@@ -1,6 +1,5 @@
 #include <iostream>
 #include "linkedList.hpp"
-using namespace std;
 
 // Constructor initializes the list to be empty
 template<typename TYPE>
@@ -113,7 +112,7 @@ void LinkedList<TYPE>::print()
 {
     Node<TYPE> *pointer = head;
     
-    cout << "{";
+    std::cout << "{";
     
     while (pointer)
     {
@@ -121,7 +120,7 @@ void LinkedList<TYPE>::print()
 	    pointer = pointer->next;
     }
 
-    cout << " }";
+    std::cout << " }";
 }
 
 // Method to remove an element at the beginning of the list
