@@ -3,7 +3,9 @@
 using namespace std;
 
 // Constructor initializes the list to be empty
-LinkedList::LinkedList()
+template<typename TYPE>
+
+LinkedList<TYPE>::LinkedList()
 {
     head = nullptr;
     tail = nullptr;
@@ -11,19 +13,25 @@ LinkedList::LinkedList()
 }
 
 // Destructor clears the list
-LinkedList::~LinkedList() {
+template<typename TYPE>
+
+LinkedList<TYPE>::~LinkedList() {
     this->clear();
 }
 
 // Method returns the number of elements in the list
-size_t LinkedList::size() {
+template<typename TYPE>
+
+size_t LinkedList<TYPE>::size() {
     return this->length;
 }
 
 // Method to insert an element at the beginning of the list
-void LinkedList::push_front(const double data)
+template<typename TYPE>
+
+void LinkedList<TYPE>::push_front(const TYPE data)
 {
-    Node *new_node = new Node(data, head);
+    Node<TYPE> *new_node = new Node<TYPE>(data, head);
 
     (length == 0) ? tail = new_node : head->prev = new_node;
     head = new_node;
@@ -32,9 +40,11 @@ void LinkedList::push_front(const double data)
 }
 
 // Method to insert an element at the end of the list
-void LinkedList::push_back(const double data)
+template<typename TYPE>
+
+void LinkedList<TYPE>::push_back(const TYPE data)
 {
-    Node *new_node = new Node(data, nullptr, tail);
+    Node<TYPE> *new_node = new Node<TYPE>(data, nullptr, tail);
 
     (length == 0) ? head = new_node : tail->next = new_node;
     tail = new_node;
@@ -43,7 +53,9 @@ void LinkedList::push_back(const double data)
 }
 
 // Method to insert an element at specific position in the list, O(min(position, length - position))
-void LinkedList::insert(const size_t position, const double data)
+template<typename TYPE>
+
+void LinkedList<TYPE>::insert(const size_t position, const TYPE data)
 {
     if (position > length) { throw out_of_range("Index out of bounds."); }
     
@@ -53,8 +65,8 @@ void LinkedList::insert(const size_t position, const double data)
         return;
     }
 
-    Node *position_node = position < length / 2 ? search_forward(position) : search_backward(position);
-    Node *new_node = new Node(data, position_node, position_node->prev);
+    Node<TYPE> *position_node = position < length / 2 ? search_forward(position) : search_backward(position);
+    Node<TYPE> *new_node = new Node<TYPE>(data, position_node, position_node->prev);
     
     position_node->prev = new_node;
     position_node->prev->next = new_node;
@@ -63,11 +75,13 @@ void LinkedList::insert(const size_t position, const double data)
 }
 
 // Method to search for an element at the head of the list
-Node* LinkedList::search_forward(const size_t position)
+template<typename TYPE>
+
+Node<TYPE>* LinkedList<TYPE>::search_forward(const size_t position)
 {
     if (position >= length) { return nullptr; }
 
-    Node *pointer = head;
+    Node<TYPE> *pointer = head;
 
     for (size_t i = 0; i < position; ++i) {
         pointer = pointer->next;
@@ -77,11 +91,13 @@ Node* LinkedList::search_forward(const size_t position)
 }
 
 // Method to search for an element at the tail of the list
-Node* LinkedList::search_backward(const size_t position)
+template<typename TYPE>
+
+Node<TYPE>* LinkedList<TYPE>::search_backward(const size_t position)
 {
     if (position >= length) { return nullptr; }
 
-    Node *pointer = tail;
+    Node<TYPE> *pointer = tail;
 
     for (size_t i = length - 1; i > position; --i) {
 	    pointer = pointer->prev;
@@ -91,9 +107,11 @@ Node* LinkedList::search_backward(const size_t position)
 }
 
 // Method to print all list elements
-void LinkedList::print()
+template<typename TYPE>
+
+void LinkedList<TYPE>::print()
 {
-    Node *pointer = head;
+    Node<TYPE> *pointer = head;
     
     cout << "{";
     
@@ -107,12 +125,14 @@ void LinkedList::print()
 }
 
 // Method to remove an element at the beginning of the list
-double LinkedList::pop_front()
+template<typename TYPE>
+
+TYPE LinkedList<TYPE>::pop_front()
 {
     if (head == nullptr) { return -1; }
     
-    double data = head->data;
-    Node *pointer = head;
+    TYPE data = head->data;
+    Node<TYPE> *pointer = head;
 
     head = head->next;
     if (head) { head->prev = nullptr; }
@@ -124,12 +144,14 @@ double LinkedList::pop_front()
 }
 
 // Method to remove an element at the end of the list
-double LinkedList::pop_back()
+template<typename TYPE>
+
+TYPE LinkedList<TYPE>::pop_back()
 {
     if (tail == nullptr) { return -1; }
 
-    double data = tail->data;
-    Node *pointer = tail;
+    TYPE data = tail->data;
+    Node<TYPE> *pointer = tail;
 
     tail = tail->prev;
 
@@ -142,16 +164,18 @@ double LinkedList::pop_back()
 }
 
 // Method to remove an element at specific position
-double LinkedList::remove(const size_t position)
+template<typename TYPE>
+
+TYPE LinkedList<TYPE>::remove(const size_t position)
 {
     if (position >= length) { throw out_of_range("Index out of bounds."); }
 
-    Node *position_node = position < length / 2 ? search_forward(position) : search_backward(position);
+    Node<TYPE> *position_node = position < length / 2 ? search_forward(position) : search_backward(position);
 
     if (position_node == head) { return pop_front(); }
     if (position_node == tail) { return pop_back();  }
     
-    double data = position_node->data;
+    TYPE data = position_node->data;
 
     position_node->prev->next = position_node->next;
     position_node->next->prev = position_node->prev;
@@ -163,11 +187,13 @@ double LinkedList::remove(const size_t position)
 }
 
 // Method clears the list
-void LinkedList::clear()
+template<typename TYPE>
+
+void LinkedList<TYPE>::clear()
 {
     while (head != nullptr)
     {
-        Node *temp = head->next;
+        Node<TYPE> *temp = head->next;
         delete head;
         head = temp;
     }
@@ -177,10 +203,12 @@ void LinkedList::clear()
 }
 
 // Method to access an element at specific position
-double &LinkedList::operator[](const size_t position)
+template<typename TYPE>
+
+TYPE &LinkedList<TYPE>::operator[](const size_t position)
 {
     if (position >= length) { throw out_of_range("Index out of bounds."); }
 
-    Node *position_node = position < length / 2 ? search_forward(position) : search_backward(position);
+    Node<TYPE> *position_node = position < length / 2 ? search_forward(position) : search_backward(position);
     return position_node->data;
 }
