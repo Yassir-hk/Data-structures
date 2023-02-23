@@ -24,17 +24,17 @@ class LinkedList
 public:
     LinkedList();
     ~LinkedList();
-    size_t size();
+    size_t size() const;
     void push_front(const TYPE);
     void push_back(const TYPE);
     void insert(const size_t, const TYPE);
     TYPE pop_front();
     TYPE pop_back();
     TYPE remove(const size_t);
-    void print();
+    void print() const;
     void clear();
     TYPE &operator[](const size_t);
 private:
-    Node<TYPE> *search_forward(const size_t);
-    Node<TYPE> *search_backward(const size_t);
+    Node<TYPE> *search_forward(const size_t)  const;
+    Node<TYPE> *search_backward(const size_t) const;
 };

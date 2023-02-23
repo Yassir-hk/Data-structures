@@ -1,6 +1,8 @@
 #include <iostream>
 #include "linkedList.hpp"
 
+using namespace std;
+
 // Constructor initializes the list to be empty
 template<typename TYPE>
 
@@ -21,7 +23,7 @@ LinkedList<TYPE>::~LinkedList() {
 // Method returns the number of elements in the list
 template<typename TYPE>
 
-size_t LinkedList<TYPE>::size() {
+size_t LinkedList<TYPE>::size() const {
     return this->length;
 }
 
@@ -76,8 +78,8 @@ void LinkedList<TYPE>::insert(const size_t position, const TYPE data)
 // Method to search for an element at the head of the list
 template<typename TYPE>
 
-Node<TYPE>* LinkedList<TYPE>::search_forward(const size_t position)
-{
+Node<TYPE>* LinkedList<TYPE>::search_forward(const size_t position) const
+{    
     if (position >= length) { return nullptr; }
 
     Node<TYPE> *pointer = head;
@@ -92,7 +94,7 @@ Node<TYPE>* LinkedList<TYPE>::search_forward(const size_t position)
 // Method to search for an element at the tail of the list
 template<typename TYPE>
 
-Node<TYPE>* LinkedList<TYPE>::search_backward(const size_t position)
+Node<TYPE>* LinkedList<TYPE>::search_backward(const size_t position) const
 {
     if (position >= length) { return nullptr; }
 
@@ -108,11 +110,11 @@ Node<TYPE>* LinkedList<TYPE>::search_backward(const size_t position)
 // Method to print all list elements
 template<typename TYPE>
 
-void LinkedList<TYPE>::print()
+void LinkedList<TYPE>::print() const
 {
     Node<TYPE> *pointer = head;
     
-    std::cout << "{";
+    cout << "{";
     
     while (pointer)
     {
@@ -120,7 +122,7 @@ void LinkedList<TYPE>::print()
 	    pointer = pointer->next;
     }
 
-    std::cout << " }";
+    cout << " }";
 }
 
 // Method to remove an element at the beginning of the list
@@ -211,3 +213,5 @@ TYPE &LinkedList<TYPE>::operator[](const size_t position)
     Node<TYPE> *position_node = position < length / 2 ? search_forward(position) : search_backward(position);
     return position_node->data;
 }
+
+/**/
