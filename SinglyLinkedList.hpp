@@ -1,7 +1,5 @@
 #pragma once
 
-// The node structure
-
 template<typename T>
 struct Node
 {
@@ -9,8 +7,6 @@ struct Node
     Node<T> *next;
     Node(T d, Node *n = nullptr) : next(n), data(d) {}
 };
-
-// The doubly linkedlist class
 
 template<typename T>
 class LinkedList

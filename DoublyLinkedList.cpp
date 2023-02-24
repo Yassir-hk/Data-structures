@@ -11,8 +11,6 @@ LinkedList<T>::LinkedList()
     length = 0;
 }
 
-// Destructor clears the list
-
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
