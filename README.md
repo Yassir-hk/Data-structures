@@ -5,4 +5,5 @@ Data structures improve the efficiency of the program and code readability.
 This repository contains my implementation of classic and common data structures using C++.
 
 List of implemented data structures in this repository :
+- Singly linked list
 - Doubly linked list
