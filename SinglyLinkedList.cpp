@@ -102,8 +102,8 @@ T LinkedList<T>::pop_front()
     Node<T> *temp = head;
 
     head = head->next;
-    delete temp;
     length--;
+    delete temp;
 
     return data;
 }
@@ -115,7 +115,7 @@ T LinkedList<T>::pop_back()
 {
     switch (length)
     {
-        case 0: return T();
+        case 0: throw out_of_range("List is empty");
         case 1: return pop_front();
     }
 
@@ -155,8 +155,8 @@ T LinkedList<T>::remove(const size_t position)
     T data = iterator->data;
 
     iterator->next = iterator->next->next;
-    delete temp;
     length--;
+    delete temp;
 
     return data;
 }

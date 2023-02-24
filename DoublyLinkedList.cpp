@@ -55,8 +55,8 @@ template <typename T>
 void LinkedList<T>::insert(const size_t position, const T data)
 {
     if (position > length) { throw out_of_range("Index out of bounds."); }
-    if (position == 0) { return push_front(data); }
     if (position == length) { return push_back(data); }
+    if (position == 0) { return push_front(data); }
 
     Node<T> *positionNode = position < length / 2 ? search_forward(position) : search_backward(position);
     Node<T> *newNode = new Node<T>(data, positionNode, positionNode->prev);
@@ -69,7 +69,7 @@ void LinkedList<T>::insert(const size_t position, const T data)
 // Method to search for an element at the head of the list
 
 template <typename T>
-Node<T>* LinkedList<T>::search_forward(const size_t position) const
+Node<T>* LinkedList<T>::search_forward(const size_t& position) const
 {
     if (position >= length) { return nullptr; }
 
@@ -86,7 +86,7 @@ Node<T>* LinkedList<T>::search_forward(const size_t position) const
 // Method to search for an element at the tail of the list
 
 template <typename T>
-Node<T>* LinkedList<T>::search_backward(const size_t position) const
+Node<T>* LinkedList<T>::search_backward(const size_t& position) const
 {
     if (position >= length) { return nullptr; }
 
@@ -129,8 +129,8 @@ T LinkedList<T>::pop_front()
     Node<T> *temp = head;
 
     head = head->next;
-    delete temp;
     length--;
+    delete temp;
 
     if (head != nullptr) { head->prev = nullptr; }
 
@@ -148,8 +148,8 @@ T LinkedList<T>::pop_back()
     Node<T> *temp = tail;
 
     tail = tail->prev;
-    delete temp;
     length--;
+    delete temp;
 
     if (tail != nullptr) { tail->next = nullptr; }
 
@@ -162,16 +162,16 @@ template <typename T>
 T LinkedList<T>::remove(const size_t position)
 {
     if (position >= length) { throw out_of_range("Index out of bounds."); }
-    if (position == 0) { return pop_front(); }
     if (position == length-1) { return pop_back(); }
+    if (position == 0) { return pop_front(); }
 
     Node<T> *positionNode = (position < length / 2) ? search_forward(position) : search_backward(position);
     T data = positionNode->data;
 
     positionNode->prev->next = positionNode->next;
     positionNode->next->prev = positionNode->prev;
-    delete positionNode;
     length--;
+    delete positionNode;
 
     return data;
 }
@@ -198,9 +198,7 @@ template <typename T>
 T& LinkedList<T>::operator[](const size_t position) const
 {
     if (position >= length) { throw out_of_range("Index out of bounds."); }
-
     Node<T> *positionNode = position < length / 2 ? search_forward(position) : search_backward(position);
-
     return positionNode->data;
 }
 

@@ -19,18 +19,18 @@ public:
     LinkedList();
     ~LinkedList();
     size_t size() const;
-    void push_front(const T);
-    void push_back(const T);
-    void insert(const size_t, const T);
-    T pop_front();
     T pop_back();
+    T pop_front();
     T remove(const size_t);
-    void print() const;
     void clear();
+    void print() const;
+    void push_back(const T);
+    void push_front(const T);
+    void insert(const size_t, const T);
     T& operator[](const size_t) const;
 private:
-    Node<T>* search_forward(const size_t)  const;
-    Node<T>* search_backward(const size_t) const;
+    Node<T>* search_forward(const size_t&) const;
+    Node<T>* search_backward(const size_t&) const;
 };
 
 /**/
