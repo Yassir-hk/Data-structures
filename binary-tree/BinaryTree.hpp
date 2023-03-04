@@ -1,6 +1,5 @@
 #pragma once
 
-
 /*
  * Binary tree implementation
  */

@@ -3,7 +3,6 @@
 #include "Stack.hpp"
 using namespace std;
 
-
 // Return the current number of element in the stack
 template <class T, size_t N>
 size_t Stack<T, N>::size() const {

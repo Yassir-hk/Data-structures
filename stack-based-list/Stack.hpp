@@ -1,6 +1,5 @@
 #pragma once
 
-
 /*
  * Linked list implementation of stack
  */

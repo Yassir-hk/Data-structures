@@ -1,6 +1,5 @@
 #pragma once
 
-
 /*
  * Circular doubly linked list implementation
  */

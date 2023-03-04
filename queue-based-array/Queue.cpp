@@ -3,7 +3,6 @@
 #include "Queue.hpp"
 using namespace std;
 
-
 // Check if the queue is empty
 template <class T, size_t N>
 bool Queue<T, N>::is_empty() const {

@@ -3,24 +3,17 @@
 #include "BinaryTree.hpp"
 using namespace std;
 
-
 // Destructor
 BinaryTree::~BinaryTree() {
     clear();
 }
 
-/*
- * Return the number of nodes on the tree
- */
-
+// Return the number of nodes on the tree
 size_t BinaryTree::size() const {
     return _size;
 }
 
-/*
- * Print all elements of the tree
- */
-
+// Print all elements of the tree
 void BinaryTree::display() const {
     display(root);
 }
@@ -36,10 +29,7 @@ void BinaryTree::display(Node *exploredNode) const
     display(exploredNode->right);
 }
 
-/*
- * Count the number of levels (height) of the tree
- */
-
+// Count the number of levels (height) of the tree
 size_t BinaryTree::height() const {
     return height(root);
 }
@@ -53,18 +43,12 @@ size_t BinaryTree::height(Node *exploredNode) const
     return 1 + max(height(exploredNode->left), height(exploredNode->right));
 }
 
-/*
- * Check if certain element exist in the tree
- */
-
+// Check if certain element exist in the tree
 bool BinaryTree::exist(const long data) const {
     return search_node(root, data) != nullptr;
 }
 
-/*
- * Insert element to the tree
- */
-
+// Insert element to the tree
 void BinaryTree::insert(const long data)
 {
     insert(root, data);
@@ -84,10 +68,7 @@ void BinaryTree::insert(Node *&exploredNode, const long data)
     }
 }
 
-/*
- * Search for specific node
- */
-
+// Search for specific node
 Node *BinaryTree::search_node(Node *exploredNode, const long data) const
 {
     if (exploredNode == nullptr || exploredNode->data == data) {
@@ -97,10 +78,7 @@ Node *BinaryTree::search_node(Node *exploredNode, const long data) const
     return search_node((exploredNode->data < data ? exploredNode->right : exploredNode->left), data);
 }
 
-/*
- * Search for the parent of a node
- */
-
+// Search for the parent of a node
 Node *BinaryTree::search_parent_node(Node *exploredNode, const long data) const
 {
     if (exploredNode == nullptr) {
@@ -113,10 +91,7 @@ Node *BinaryTree::search_parent_node(Node *exploredNode, const long data) const
     return search_parent_node((exploredNode->data < data ? exploredNode->right : exploredNode->left), data);
 }
 
-/*
- * Remove specific node
- */
-
+// Remove specific node
 void BinaryTree::remove(const long data)
 {
     Node *parentNode = search_parent_node(root, data);
@@ -148,10 +123,7 @@ void BinaryTree::remove(const long data)
     _size--;
 }
 
-/*
- * Delete all nodes of the tree
- */
-
+// Delete all nodes of the tree
 void BinaryTree::clear()
 {
     clear(root);
@@ -170,10 +142,7 @@ void BinaryTree::clear(Node *&root)
     clear(root->right);
 }
 
-/*
- * Return the root node
- */
-
+//  Return the root node
 long BinaryTree::getRoot() const
 {
     if (_size == 0) {

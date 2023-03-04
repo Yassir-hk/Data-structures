@@ -1,6 +1,5 @@
 #pragma once
 
-
 /*
  * Singly linked list implementation
  */

@@ -3,7 +3,6 @@
 #include "DoublyLinkedList.hpp"
 using namespace std;
 
-
 // Destructor
 template <class T>
 DoublyLinkedList<T>::~DoublyLinkedList() {

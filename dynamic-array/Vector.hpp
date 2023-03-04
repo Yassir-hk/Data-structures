@@ -1,6 +1,5 @@
 #pragma once
 
-
 /*
  * Implementation of dynamic array
  */

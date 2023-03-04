@@ -3,7 +3,6 @@
 #include "SinglyLinkedList.hpp"
 using namespace std;
 
-
 // Destructor
 template <class T>
 SinglyLinkedList<T>::~SinglyLinkedList() {

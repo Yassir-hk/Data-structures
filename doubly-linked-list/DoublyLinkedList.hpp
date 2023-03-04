@@ -1,6 +1,5 @@
 #pragma once
 
-
 /*
  * Doubly linked list implementation
  */

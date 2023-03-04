@@ -1,6 +1,5 @@
 #pragma once
 
-
 /*
  * Array implementation of stack
  */

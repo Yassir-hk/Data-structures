@@ -3,7 +3,6 @@
 #include "Vector.hpp"
 using namespace std;
 
-
 // Initialize the array
 template <class T>
 Vector<T>::Vector(const size_t len, const T value) : _size(len)

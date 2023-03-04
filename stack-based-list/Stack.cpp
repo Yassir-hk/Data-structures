@@ -3,6 +3,7 @@
 #include "Stack.hpp"
 using namespace std;
 
+// Destructor
 template <class T>
 Stack<T>::~Stack() {
     clear();

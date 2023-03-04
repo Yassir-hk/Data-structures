@@ -3,7 +3,6 @@
 #include "CircularDoublyLinkedList.hpp"
 using namespace std;
 
-
 // Destructor
 template <class T>
 CircularDoublyLinkedList<T>::~CircularDoublyLinkedList() {
