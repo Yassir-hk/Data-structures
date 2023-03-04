@@ -1,5 +1,10 @@
 #pragma once
 
+
+/*
+ * Singly linked list implementation
+ */
+
 template<typename T>
 struct Node
 {
@@ -9,13 +14,13 @@ struct Node
 };
 
 template<typename T>
-class LinkedList
+class SinglyLinkedList
 {
     Node<T> *head;
-    size_t length;
+    size_t _size;
 public:
-    LinkedList();
-    ~LinkedList();
+    SinglyLinkedList() : head(nullptr), tail(nullptr) {};
+    ~SinglyLinkedList();
     size_t size() const;
     void push_front(const T);
     void push_back(const T);

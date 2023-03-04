@@ -1,25 +1,29 @@
 #pragma once
 
-template <typename T>
-struct Node
+
+/*
+ * Linked list implementation of stack
+ */
+
+template <class T> struct Node
 {
     T data;
     Node<T> *next;
     Node<T>(const T& d, Node<T> *n):data(d), next(n) {}
-}
+};
 
-template <typename T>
+template <class T>
 class Stack
 {
     Node<T> *stackTop;
     size_t stackSize;
 public:
-    Stack();
+    Stack() : stackTop(nullptr), stackSize(0) {};
     ~Stack();
     size_t size() const;
     bool is_empty() const;
     void display() const;
-    void clear() const;
+    void clear();
     void push(const T&);
     T& top() const;
     T pop();
