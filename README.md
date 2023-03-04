@@ -7,3 +7,8 @@ This repository contains my implementation of classic and common data structures
 List of implemented data structures in this repository :
 - Singly linked list
 - Doubly linked list
+- Circular doubly linked list
+- Array implemntation of stack
+- Linked list implementation of stack
+- Array implemntation of stack
+- Binary tree
