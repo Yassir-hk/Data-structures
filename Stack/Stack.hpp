@@ -4,7 +4,7 @@
  * Array implementation of stack
  */
 
-template <class T, size_t N>
+template <typename T, size_t N>
 class Stack
 {
 private:
@@ -18,5 +18,5 @@ public:
     void push(const T&);
     T& top() const;
     T& pop();
-    void display_stack() const;
+    void display() const;
 };
