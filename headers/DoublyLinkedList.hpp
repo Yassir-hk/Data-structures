@@ -1,7 +1,7 @@
 #pragma once
 #include <cstddef>
 
-template <typename T>
+template<typename T>
 struct Node {
   T data;
   Node<T> *next;
@@ -9,7 +9,7 @@ struct Node {
   Node(T value = T(), Node *n = nullptr, Node *p = nullptr):next(n), prev(p), data(value) {}
 };
 
-template <typename T>
+template<typename T>
 class DoublyLinkedList {
 private:
   Node<T> *head;
