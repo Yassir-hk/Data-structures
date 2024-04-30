@@ -29,7 +29,7 @@ public:
   void pop_back();
   void clear();
   size_t size() const;
-  Node<T>* search_node(const T &) const;
+  Node<T>* find(const T &) const;
   Node<T>* search_forward(const size_t) const;
   Node<T>* search_backward(const size_t) const;
 };

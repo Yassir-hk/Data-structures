@@ -72,7 +72,7 @@ void CircularLinkedList<T>::clear() {
 }
 
 template<typename T>
-Node<T>* CircularLinkedList<T>::search_node(const T &data) const {
+Node<T>* CircularLinkedList<T>::find(const T &data) const {
   for (auto it = sentinel.next; it != &sentinel; it = it->next) {
     if (data == it->data) return it;
   }
