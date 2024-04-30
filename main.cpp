@@ -1,20 +1,22 @@
-#include "headers/singly_linked_list.hpp"
+#include <iostream>
+#include "headers/ArrayQueue.hpp"
 
-const int N = 20;
+using namespace std;
 
 int main() {
-  SinglyLinkedList<int> test_list;
-  for (int i = 0; i < N; ++i) {
-    if (i & 1) test_list.push_back(i);
-    else test_list.push_front(i);
+  ArrayQueue<int, 5> queue;
+  for (int i = 0; i < 5; ++i) {
+    cout << "Queue is empty: " << queue.is_empty() << endl;
+    cout << "Queue is full: " << queue.is_full() << endl;
+    queue.push(i);
+    cout << queue << endl;
   }
-  test_list.print();
-  test_list.insert_at(0, 654);
-  test_list.insert_at(5, 888);
-  test_list.print();
-  while (test_list.size()) {
-    if (test_list.size() & 1) test_list.pop_back();
-    else test_list.pop_front();
-    test_list.print();
+
+  for (int i = 0; i < 5; ++i) {
+    cout << "Queue is empty: " << queue.is_empty() << endl;
+    cout << "Queue is full: " << queue.is_full() << endl;
+    queue.pop();
+    cout << queue << endl;
   }
+  return 0;
 }

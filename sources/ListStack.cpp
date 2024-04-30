@@ -1,3 +1,4 @@
+#include <cassert>
 #include "../headers/ListStack.hpp"
 
 template<typename T>

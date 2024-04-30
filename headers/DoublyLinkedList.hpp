@@ -32,8 +32,8 @@ public:
   void clear();
   void print() const;
   T& operator[](const size_t &) const;
-  T& front() const;
-  T& back() const;
+  T& front();
+  T& back();
 };
 
 #include "../sources/DoublyLinkedList.cpp"

@@ -43,23 +43,14 @@ void ArrayQueue<T, N>::pop() {
   head_idx++;
 }
 
-template <typename T, size_t N>
-void ArrayQueue<T, N>::print() const {
-  if (is_empty()) return;
-  for (size_t i = head_idx; i < tail_idx; ++i) {
-    const size_t idx = i % N;
-    std::cout << " " << container[idx];
-  }
-}
-
 template<typename T, size_t N>
-T& ArrayQueue<T, N>::front() const {
+T& ArrayQueue<T, N>::front() {
   assert(!is_empty());
   return container[tail_idx % N];
 }
 
 template<typename T, size_t N>
-T& ArrayQueue<T, N>::back() const {
+T& ArrayQueue<T, N>::back() {
   assert(!is_empty());
   return container[head_idx % N];
 }

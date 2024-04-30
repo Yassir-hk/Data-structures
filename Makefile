@@ -1,9 +1,15 @@
 CC = g++
-CFLAGS = -std=c++20 -Wall -Wextra
+CFLAGS = -std=c++11 -Wall
+TARGET_DIR = bin
 
-all:
-	@echo "Creation of the executable file"
-	$(CC) $(CFLAGS) -o out test.cpp
+.PHONY: all clean
+
+all: build
+
+build:
+	@echo "Creating executable file"
+	@mkdir $(TARGET_DIR)
+	$(CC) $(CFLAGS) main.cpp -o $(TARGET_DIR)/out
 
 clean:
-	rm out
+	@rm -rf $(TARGET_DIR)/out

@@ -142,13 +142,13 @@ T& DoublyLinkedList<T>::operator[](const size_t &position) const {
 }
 
 template <typename T>
-T& DoublyLinkedList<T>::front() const {
+T& DoublyLinkedList<T>::front() {
   assert(length > 0);
   return head;
 }
 
 template <typename T>
-T& DoublyLinkedList<T>::back() const {
+T& DoublyLinkedList<T>::back() {
   assert(length > 0);
   return tail;
 }

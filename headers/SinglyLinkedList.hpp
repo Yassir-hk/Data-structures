@@ -5,7 +5,7 @@ template<typename T>
 struct Node {
   T data;
   Node<T> *next;
-  Node(T data): data(data), next(nullptr) {}
+  Node(T data):data(data), next(nullptr) {}
 };
 
 template<typename T>
@@ -20,6 +20,7 @@ public:
   ~SinglyLinkedList();
   T& front() const;
   T& back() const;
+  size_t size() const;
   void push_front(T data);
   void push_back(T data);
   void insert_at(size_t position, T data);
@@ -28,7 +29,6 @@ public:
   void remove_at(size_t position);
   void clear();
   void print() const;
-  size_t size() const;
 };
 
 #include "../sources/SinglyLinkedList.cpp"

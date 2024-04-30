@@ -35,9 +35,9 @@ void ArrayStack<T, N>::pop() {
 }
 
 template<typename T, size_t N>
-T& ArrayStack<T, N>::top() const {
+T& ArrayStack<T, N>::top() {
   assert(!is_empty());
-  return container[top_idx];
+  return container[top_idx - 1];
 }
 
 template<typename T, size_t N>

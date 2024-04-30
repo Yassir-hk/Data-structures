@@ -38,9 +38,9 @@ void CircularLinkedList<T>::push_front(const T &data) {
 template<typename T>
 void CircularLinkedList<T>::push_back(const T &data) {
   if (length == 0) return push_front(data);
-  Node<T> *nodeToInsert = new Node<T>(data, &sentinel, sentinel.prev);
-  sentinel.prev->next = nodeToInsert;
-  sentinel.prev = nodeToInsert;
+  Node<T> *new_node = new Node<T>(data, &sentinel, sentinel.prev);
+  sentinel.prev->next = new_node;
+  sentinel.prev = new_node;
   length++;
 }
 
@@ -60,8 +60,8 @@ void CircularLinkedList<T>::pop_back() {
   Node<T> *temp = sentinel.prev;
   sentinel.prev = sentinel.prev->prev;
   sentinel.prev->next = &sentinel;
-  length--;
   delete temp;
+  length--;
 }
 
 template<typename T>
@@ -115,10 +115,10 @@ template<typename T>
 void CircularLinkedList<T>::insert_at(const T &data, const size_t position) {
   position %= length;
   if (position == 0) return push_front(data);
-  Node<T> *positionNode = position < length / 2 ? search_forward(position) : search_backward(position);
-  Node<T> *nodeToInsert = new Node<T>(data, positionNode, positionNode->prev);
-  positionNode->prev->next = nodeToInsert;
-  positionNode->prev = nodeToInsert;
+  Node<T> *target_node = position < length / 2 ? search_forward(position) : search_backward(position);
+  Node<T> *new_node = new Node<T>(data, target_node, target_node->prev);
+  target_node->prev->next = new_node;
+  target_node->prev = new_node;
   length++;
 }
 
@@ -127,9 +127,9 @@ void CircularLinkedList<T>::remove_at(const size_t position) {
   position %= length;
   if (position == 0) return pop_front();
   if (position == length - 1) return pop_back();
-  Node<T> *positionNode = position < length / 2 ? search_forward(position) : search_backward(position);
-  positionNode->prev->next = positionNode->next;
-  positionNode->next->prev = positionNode->prev;
-  delete positionNode;
+  Node<T> *target_node = position < length / 2 ? search_forward(position) : search_backward(position);
+  target_node->prev->next = target_node->next;
+  target_node->next->prev = target_node->prev;
+  delete target_node;
   length--;
 }

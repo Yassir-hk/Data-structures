@@ -2,36 +2,39 @@
 #include <iostream>
 #include <stdexcept>
 
+template<typename T>
 struct Node {
-  long data;
-  Node *left;
-  Node *right;
-  Node(long d = 0, Node *l = nullptr, Node *r = nullptr) : data(d), left(l), right(r) {}
+  T data;
+  Node<T> *left;
+  Node<T> *right;
+  Node(T d = 0, Node *l = nullptr, Node *r = nullptr) : data(d), left(l), right(r) {}
 };
 
+template<typename T>
 class BinaryTree {
 private:
-  Node *root;
-  size_t treeSize;
+  Node<T> *root;
+  size_t tree_size;
+  int (*compare)(T, T);
 
 public:
-  BinaryTree() : treeSize(0), root(nullptr) {}
+  BinaryTree(int (*comp)(T, T));
   ~BinaryTree();
   size_t size() const;
   size_t height() const;
   bool exist(const long) const;
   void print() const;
-  void insert(const long);
-  void remove(const long);
+  void insert(const T);
+  void remove(const T);
   void clear();
-  long getRoot() const;
+  long get_root();
 
 private:
   void print(Node *) const;
-  void insert(Node *&, const long);
+  void insert(Node<T>*&, const T);
   size_t height(Node *) const;
-  Node *search_node(Node *, const long) const;
-  Node *search_parent_node(Node *, const long) const;
+  Node<T>* search_parent_node(Node<T>*, const T);
+  Node<T>* remove(Node<T>*, const T);
   void clear(Node *&);
 };
 
@@ -65,20 +68,6 @@ size_t BinaryTree::height(Node *exploredNode) const {
 
 bool BinaryTree::exist(const long data) const {
   return search_node(root, data) != nullptr;
-}
-
-void BinaryTree::insert(const long data) {
-  insert(root, data);
-  treeSize++;
-}
-
-void BinaryTree::insert(Node *&exploredNode, const long data) {
-  if (exploredNode == nullptr)
-    exploredNode = new Node(data);
-  else if (data < exploredNode->data)
-    insert(exploredNode->left, data);
-  else if (data > exploredNode->data)
-    insert(exploredNode->right, data);
 }
 
 Node *BinaryTree::search_node(Node *exploredNode, const long data) const {
@@ -134,7 +123,9 @@ void BinaryTree::clear(Node *&root) {
   clear(root->right);
 }
 
-long BinaryTree::getRoot() const {
+long BinaryTree::get_root() const {
   assert(treeSize != 0);
   return root->data;
 }
+
+#include "../sources/BinaryTree.cpp"
