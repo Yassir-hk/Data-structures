@@ -26,8 +26,8 @@ void BinaryTree<T>::insert(Node<T>*& node, const T data) {
     tree_size++;
   } else {
     int comp_value = compare(data, node->data);
-    if (comp_value == -1) insert(node->left, data);
-    if (comp_value ==  1) insert(node->right, data);
+    if (comp_value < 0) insert(node->left, data);
+    if (comp_value > 0) insert(node->right, data);
   }
 }
 
@@ -37,50 +37,61 @@ void BinaryTree<T>::insert(const T data) {
 }
 
 template<typename T>
-Node<T>*& BinaryTree<T>::find(Node<T>*& node, const T data) const {
-  if (node == nullptr || compare(data, node->data) == 0) return node;
-  if (compare(data, node->data) == -1) return find(node->left, data);
-  return find(node->right, data);
+bool BinaryTree<T>::exist(Node<T>* node, const T data) const {
+  if (node == nullptr) return false;
+  int comp_value = compare(data, node->data);
+  if (comp_value == 0) return true;
+  return comp_value < 0 ? exist(node->left, data) : exist(node->right, data);
 }
 
 template<typename T>
 bool BinaryTree<T>::exist(const T data) const {
-  return find(root, data) != nullptr;
+  return exist(root, data);
 }
 
 template<typename T>
 Node<T>* get_not_null(Node<T>*& node1, Node<T>*& node2) {
-  return node1 ? node1 : node2;
+  return node1 != nullptr ? node1:node2;
 }
 
 template<typename T>
-Node<T>*& get_min_node(Node<T>* node) {
+Node<T>* get_min_node(Node<T>* node) {
   if (node == nullptr) return node;
-  Node<T>* traversing_node = node;
-  while (traversing_node->left) {
-    traversing_node = traversing_node->left;
+  while (node->left) {
+    node = node->left;
   } 
-  return traversing_node;
+  return node;
 }
 
 template<typename T>
-void BinaryTree<T>::remove(const T data) {
-  Node<T>* node = find(root, data);
+void BinaryTree<T>::remove(Node<T>*& node, const T data) {
   if (node == nullptr) return;
+  int comp_value = compare(data, node->data);
+  if (comp_value < 0) return remove(node->left, data);
+  if (comp_value > 0) return remove(node->right, data);
+
   Node<T>* left_branch = node->left;
   Node<T>* right_branch = node->right;
-  if (left_branch == nullptr || right_branch == nullptr) {
+
+  delete node;
+  if (left_branch && right_branch) {
+    node = right_branch;
+    Node<T>* min_node = get_min_node(right_branch);
+    min_node->left = left_branch;
+  } else {
     node = get_not_null(left_branch, right_branch);
-    return;
   }
-  node = right_branch;
-  Node<T>* min_node = get_min_node(right_branch);
-  min_node->left = left_branch;
+
   tree_size--;
 }
 
 template<typename T>
-void BinaryTree<T>::inorder_traversal(Node<T>*& node) const {
+void BinaryTree<T>::remove(const T data) {
+  remove(root, data);
+}
+
+template<typename T>
+void BinaryTree<T>::inorder_traversal(Node<T>* node) const {
   if (node == nullptr) return;
   inorder_traversal(node->left);
   std::cout << " " << node->data;
@@ -93,7 +104,7 @@ void BinaryTree<T>::inorder_traversal() const {
 }
 
 template<typename T>
-void BinaryTree<T>::preorder_traversal(Node<T>*& node) const {
+void BinaryTree<T>::preorder_traversal(Node<T>* node) const {
   if (node == nullptr) return;
   std::cout << node->data << " ";
   preorder_traversal(node->left);
@@ -106,7 +117,7 @@ void BinaryTree<T>::preorder_traversal() const {
 }
 
 template<typename T>
-void BinaryTree<T>::postorder_traversal(Node<T>*& node) const {
+void BinaryTree<T>::postorder_traversal(Node<T>* node) const {
   if (node == nullptr) return;
   postorder_traversal(node->left);
   postorder_traversal(node->right);
@@ -119,7 +130,7 @@ void BinaryTree<T>::postorder_traversal() const {
 }
 
 template<typename T>
-void BinaryTree<T>::clear(Node<T> *&root) {
+void BinaryTree<T>::clear(Node<T> *root) {
   if (root == nullptr) return;
   clear(root->left);
   delete root;
@@ -134,9 +145,9 @@ void BinaryTree<T>::clear() {
 }
 
 template<typename T>
-size_t BinaryTree<T>::height(Node<T>*& node) const {
+size_t BinaryTree<T>::height(Node<T>* node) const {
   if (node == nullptr) return 0;
-  return 1 + max(height(node->left), height(node->right));
+  return 1 + std::max(height(node->left), height(node->right));
 }
 
 template<typename T>

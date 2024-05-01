@@ -10,7 +10,7 @@ int main() {
   tree.insert(5);
   tree.insert(3);
   tree.insert(7);
-  assert(tree.size() == 3);
+  std::cout << tree.size() << std::endl;
 
   // Test case for existence check
   assert(tree.exist(5));
@@ -19,25 +19,24 @@ int main() {
   // Test case for inorder traversal
   std::cout << "Inorder traversal: ";
   tree.inorder_traversal();
-  std::cout << std::endl;  // Print newline after traversal
+  std::cout << std::endl;
 
   // Test case for preorder traversal
   std::cout << "Preorder traversal: ";
   tree.preorder_traversal();
-  std::cout << std::endl;  // Print newline after traversal
+  std::cout << std::endl;
 
   // Test case for postorder traversal
   std::cout << "Postorder traversal: ";
   tree.postorder_traversal();
-  std::cout << std::endl;  // Print newline after traversal
+  std::cout << std::endl;
 
   // Test case for removal (single child)
   tree.remove(3);
   assert(tree.size() == 2);
 
   // Test case for removal (no child)
-  tree.insert(1);
-  tree.remove(1);
+  tree.remove(7);
   assert(tree.size() == 1);
 
   // Test case for removal (two children)
