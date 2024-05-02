@@ -4,7 +4,7 @@
 
 template<typename T>
 SinglyLinkedList<T>::SinglyLinkedList() {
-  length = 0;
+  list_size = 0;
   head = nullptr;
   tail = nullptr;
 }
@@ -16,13 +16,13 @@ SinglyLinkedList<T>::~SinglyLinkedList() {
 
 template<typename T>
 T& SinglyLinkedList<T>::front() const {
-  assert(length > 0);
+  assert(list_size > 0);
   return head->data;
 }
 
 template<typename T>
 T& SinglyLinkedList<T>::back() const {
-  assert(length > 0);
+  assert(list_size > 0);
   return tail->data;
 }
 
@@ -31,24 +31,24 @@ void SinglyLinkedList<T>::push_front(T data) {
   Node<T> *new_node = new Node<T>(data);
   new_node->next = head;
   head = new_node;
-  if (length == 0) tail = new_node;
-  length++;
+  if (list_size == 0) tail = new_node;
+  list_size++;
 }
 
 template<typename T>
 void SinglyLinkedList<T>::push_back(T data) {
-  if (length == 0) return push_front(data);
+  if (list_size == 0) return push_front(data);
   Node<T> *new_node = new Node<T>(data);
   tail->next = new_node;
   tail = new_node;
-  length++;
+  list_size++;
 }
 
 template<typename T>
 void SinglyLinkedList<T>::insert_at(size_t position, T data) {
-  assert(position >= 0 && position <= length);
+  assert(position >= 0 && position <= list_size);
   if (position == 0) return push_front(data);
-  if (position == length) return push_back(data);
+  if (position == list_size) return push_back(data);
 
   Node<T> *it = head;
   for (size_t idx = 0; idx < position - 1; ++idx) { 
@@ -58,22 +58,22 @@ void SinglyLinkedList<T>::insert_at(size_t position, T data) {
   Node<T> *new_node = new Node<T>(data);
   new_node->next = it->next;
   it->next = new_node;
-  length++;
+  list_size++;
 }
 
 template<typename T>
 void SinglyLinkedList<T>::pop_front() {
-  if (length == 0) return;
+  if (list_size == 0) return;
   Node<T> *temp = head;
   head = head->next;
   delete temp;
-  length--;
+  list_size--;
 }
 
 template<typename T>
 void SinglyLinkedList<T>::pop_back() {
-  if (length == 0) return;
-  if (length == 1) return pop_front();
+  if (list_size == 0) return;
+  if (list_size == 1) return pop_front();
   
   Node<T> *it = head;
   while (it->next != tail) {
@@ -83,14 +83,14 @@ void SinglyLinkedList<T>::pop_back() {
   delete tail;
   it->next = nullptr;
   tail = it;
-  length--;
+  list_size--;
 }
 
 template<typename T>
 void SinglyLinkedList<T>::remove_at(size_t position) {
-  assert(position >= 0 && position < length);
+  assert(position >= 0 && position < list_size);
   if (position == 0) return pop_front();
-  if (position == length - 1) return pop_back();
+  if (position == list_size - 1) return pop_back();
 
   Node<T> *it = head;
   for (size_t idx = 0; idx < position - 1; ++idx) {
@@ -100,12 +100,12 @@ void SinglyLinkedList<T>::remove_at(size_t position) {
   Node<T> *temp = it->next;
   it->next = temp->next;
   delete temp;
-  length--;
+  list_size--;
 }
 
 template <typename T>
 void SinglyLinkedList<T>::clear() {
-  while (length) {
+  while (list_size) {
     pop_front();
   }
 }
@@ -122,5 +122,5 @@ void SinglyLinkedList<T>::print() const {
 
 template<typename T>
 size_t SinglyLinkedList<T>::size() const {
-  return length;
+  return list_size;
 }

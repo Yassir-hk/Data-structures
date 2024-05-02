@@ -46,17 +46,17 @@ void Array<T>::pop_back() {
 }
 
 template<typename T>
-void Array<T>::insert_at(size_t index, T value) {
-  assert(index >= 0 && index <= length);
-  if (index == length) return push_back(value);
+void Array<T>::insert_at(size_t idx, T value) {
+  assert(idx >= 0 && idx <= length);
+  if (idx == length) return push_back(value);
 
   length++;
   T *new_container = new T[length];
 
   for (size_t i = 0; i < length; ++i) {
-    if (i < index) {
+    if (i < idx) {
       new_container[i] = container[i];
-    } else if (i == index) {
+    } else if (i == idx) {
       new_container[i] = value;
     } else {
       new_container[i] = container[i - 1];
@@ -67,14 +67,14 @@ void Array<T>::insert_at(size_t index, T value) {
 }
 
 template<typename T>
-void Array<T>::remove_at(size_t index) {
-  assert(index >= 0 && index < length);
-  if (index == length - 1) return pop_back();
+void Array<T>::remove_at(size_t idx) {
+  assert(idx >= 0 && idx < length);
+  if (idx == length - 1) return pop_back();
 
   T new_container = new[length];
   for (size_t i = 0; i < length; ++i) {
-    if (i < index) new_container[i] = container[i];
-    if (i > index) new_container[i - 1] = container[i];
+    if (i < idx) new_container[i] = container[i];
+    if (i > idx) new_container[i - 1] = container[i];
   }
 
   delete[] container;
@@ -88,7 +88,7 @@ T* Array<T>::front() const {
 }
 
 template<typename T>
-T& Array<T>::operator[](size_t index) {
-  assert(index >= 0 && index < length);
-  return container[index];
+T& Array<T>::operator[](size_t idx) {
+  assert(idx >= 0 && idx < length);
+  return container[idx];
 }

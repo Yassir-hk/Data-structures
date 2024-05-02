@@ -13,7 +13,7 @@ template<typename T>
 class CircularLinkedList {
 private:
   Node<T> sentinel;
-  size_t length;
+  size_t list_size;
 
 public:
   CircularLinkedList();

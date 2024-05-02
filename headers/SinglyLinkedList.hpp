@@ -13,7 +13,7 @@ class SinglyLinkedList {
 private:
   Node<T> *head;
   Node<T> *tail;
-  size_t length;
+  size_t list_size;
 
 public:
   SinglyLinkedList();

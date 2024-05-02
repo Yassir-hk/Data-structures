@@ -1,51 +1,20 @@
-#include <cassert>
-#include "headers/BinaryTree.hpp"
-
-int compare(int a, int b) {
-  return a < b ? -1 : a == b ? 0 : 1;
-}
+#include <iostream>
+#include "headers/HashTable.hpp"
 
 int main() {
-  BinaryTree<int> tree(compare);
-  tree.insert(5);
-  tree.insert(3);
-  tree.insert(7);
-  std::cout << tree.size() << std::endl;
+  // Create a hash table with string keys and integer values
+  HashTable<std::string, int> mp(12);
 
-  // Test case for existence check
-  assert(tree.exist(5));
-  assert(!tree.exist(1));
+  // Insert 15 key-value pairs into the hash table
+  for (int i = 0; i < 15; ++i) {
+    std::string key = "key_" + std::to_string(i);
+    int value = i * 10;
+    mp.insert(key, value);
+  }
 
-  // Test case for inorder traversal
-  std::cout << "Inorder traversal: ";
-  tree.inorder_traversal();
-  std::cout << std::endl;
+  // Print the size of the hash table
+  std::cout << "Hash Table Size: " << mp.size() << std::endl;
+  mp.print();
 
-  // Test case for preorder traversal
-  std::cout << "Preorder traversal: ";
-  tree.preorder_traversal();
-  std::cout << std::endl;
-
-  // Test case for postorder traversal
-  std::cout << "Postorder traversal: ";
-  tree.postorder_traversal();
-  std::cout << std::endl;
-
-  // Test case for removal (single child)
-  tree.remove(3);
-  assert(tree.size() == 2);
-
-  // Test case for removal (no child)
-  tree.remove(7);
-  assert(tree.size() == 1);
-
-  // Test case for removal (two children)
-  tree.insert(9);
-  tree.insert(8);
-  tree.remove(5);
-  assert(tree.size() == 2);
-  assert(tree.exist(5) == false);
-  assert(tree.height() == 2);
-  std::cout << "All tests passed!" << std::endl;
   return 0;
 }
