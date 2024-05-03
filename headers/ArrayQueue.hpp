@@ -2,7 +2,7 @@
 #include <ostream>
 #include <cstddef>
 
-template <typename T, size_t N>
+template<typename T, size_t N>
 class ArrayQueue {
 private:
   T container[N];

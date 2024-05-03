@@ -4,7 +4,7 @@
 #include <functional>
 #include "DoublyLinkedList.hpp"
 
-template <typename K, typename V>
+template<typename K, typename V>
 class Pair {
 public:
   K first;

@@ -8,17 +8,17 @@ DoublyLinkedList<T>::DoublyLinkedList() {
   list_size = 0;
 }
 
-template <typename T>
+template<typename T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
   clear();
 }
 
-template <typename T>
+template<typename T>
 size_t DoublyLinkedList<T>::size() const {
   return list_size;
 }
 
-template <typename T>
+template<typename T>
 void DoublyLinkedList<T>::push_front(const T &data) {
   Node<T> *new_node = new Node<T>(data, head);
   list_size == 0 ? tail = new_node : head->prev = new_node;
@@ -26,7 +26,7 @@ void DoublyLinkedList<T>::push_front(const T &data) {
   list_size++;
 }
 
-template <typename T>
+template<typename T>
 void DoublyLinkedList<T>::push_back(const T &data) {
   Node<T> *new_node = new Node<T>(data, nullptr, tail);
   list_size == 0 ? head = new_node : tail->next = new_node;
@@ -34,7 +34,7 @@ void DoublyLinkedList<T>::push_back(const T &data) {
   list_size++;
 }
 
-template <typename T>
+template<typename T>
 void DoublyLinkedList<T>::insert(const size_t &position, const T &data) {
   assert(position >= 0 && position <= list_size);
   if (position == 0) return push_front(data);
@@ -47,7 +47,7 @@ void DoublyLinkedList<T>::insert(const size_t &position, const T &data) {
   list_size++;
 }
 
-template <typename T>
+template<typename T>
 Node<T>* DoublyLinkedList<T>::search_forward(const size_t &position) const {
   if (position >= list_size) return nullptr;
 
@@ -58,7 +58,7 @@ Node<T>* DoublyLinkedList<T>::search_forward(const size_t &position) const {
   return it;
 }
 
-template <typename T>
+template<typename T>
 Node<T>* DoublyLinkedList<T>::search_backward(const size_t &position) const {
   if (position >= list_size) return nullptr;
 
@@ -69,14 +69,14 @@ Node<T>* DoublyLinkedList<T>::search_backward(const size_t &position) const {
   return it;
 }
 
-template <typename T>
+template<typename T>
 void DoublyLinkedList<T>::print() const {
   for (Node<T>* it = head; it; it = it->next) {
     std::cout << it->data << " ";
   }
 }
 
-template <typename T>
+template<typename T>
 void DoublyLinkedList<T>::pop_front() {
   assert(list_size > 0);
   Node<T> *temp = head;
@@ -86,7 +86,7 @@ void DoublyLinkedList<T>::pop_front() {
   if (head != nullptr) head->prev = nullptr;
 }
 
-template <typename T>
+template<typename T>
 void DoublyLinkedList<T>::pop_back() {
   assert(list_size > 0);
   Node<T> *temp = tail;
@@ -96,7 +96,7 @@ void DoublyLinkedList<T>::pop_back() {
   if (tail != nullptr) tail->next = nullptr;
 }
 
-template <typename T>
+template<typename T>
 void DoublyLinkedList<T>::remove_at(const size_t& position) {
   assert(position >= 0 && position < list_size);
   if (position == list_size - 1) return pop_back();
@@ -110,7 +110,7 @@ void DoublyLinkedList<T>::remove_at(const size_t& position) {
   delete target_node;
 }
 
-template <typename T>
+template<typename T>
 void DoublyLinkedList<T>::remove_node(Node<T> *target_node) {
   assert(target_node != nullptr && list_size > 0);
   if (target_node == head) return pop_front();
@@ -122,7 +122,7 @@ void DoublyLinkedList<T>::remove_node(Node<T> *target_node) {
   list_size--;
 }
 
-template <typename T>
+template<typename T>
 void DoublyLinkedList<T>::clear() {
   while (head != nullptr) {
     Node<T> *temp = head;
@@ -134,7 +134,7 @@ void DoublyLinkedList<T>::clear() {
   list_size = 0;
 }
 
-template <typename T>
+template<typename T>
 T& DoublyLinkedList<T>::operator[](const size_t &position) const {
   assert(position >= 0 && position < list_size);
   Node<T> *positionNode = position < list_size / 2 ? search_forward(position):search_backward(position);
@@ -151,13 +151,13 @@ Node<T>* DoublyLinkedList<T>::get_tail() {
   return tail;
 }
 
-template <typename T>
+template<typename T>
 T& DoublyLinkedList<T>::front() {
   assert(list_size > 0);
   return head;
 }
 
-template <typename T>
+template<typename T>
 T& DoublyLinkedList<T>::back() {
   assert(list_size > 0);
   return tail;
